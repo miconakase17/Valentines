@@ -180,7 +180,7 @@ button {
 <!-- 🔒 LOCK SCREEN -->
 <div id="lockScreen">
     <h1>💌 One question first</h1>
-    <p>Only my Valentine knows the answer</p>
+    <p>What is my favorite color?</p>
     <input type="text" id="answer" placeholder="Your answer here..." />
     <button onclick="unlock()">Continue 💖</button>
     <p id="error">Hmm… try again 🥺</p>
@@ -205,7 +205,7 @@ button {
 <script>
 /* 🔐 Unlock Logic */
 function unlock() {
-    const correctAnswer = "21".toLowerCase(); // CHANGE THIS
+    const correctAnswer = "Pink".toLowerCase(); // CHANGE THIS
     const userAnswer = document.getElementById("answer").value.toLowerCase();
 
     if (userAnswer === correctAnswer) {
