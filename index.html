@@ -352,49 +352,53 @@
         noBtn.addEventListener("touchstart", moveNoButton);
 
         document.getElementById("yesBtn").addEventListener("click", () => {
+            const valentineContent = document.getElementById("valentineContent");
 
-    // Fade out previous content
-    const content = document.getElementById("valentineContent");
-    content.style.transition = "opacity 1s ease";
-    content.style.opacity = "0";
+            // Fade out previous content
+            valentineContent.style.transition = "opacity 1s ease";
+            valentineContent.style.opacity = "0";
 
-    setTimeout(() => {
-        // Full cinematic YES screen
-        document.body.innerHTML = `
-        <div class="success">
+            setTimeout(() => {
+                // Create YES screen container without removing audio
+                const successScreen = document.createElement("div");
+                successScreen.className = "success";
+                successScreen.innerHTML = `
             <h1 id="yesTitle">She Said YES 💕</h1>
             <div id="yesHearts" style="font-size:4rem; position:relative; height:80px;">
                 💖🌹💍
             </div>
-            <p id="yesQuote" style="margin-top:20px; font-size:1.1rem; opacity:0; transition: opacity 1s;">“You are my today and all of my tomorrows.”</p>
-        </div>
+            <p id="yesQuote" style="margin-top:20px; font-size:1.1rem; opacity:0; transition: opacity 1s;">
+                “You are my today and all of my tomorrows.”
+            </p>
         `;
+                document.body.appendChild(successScreen);
 
-        // Animate hearts floating
-        const yesHearts = document.getElementById("yesHearts");
-        setInterval(() => {
-            const heart = document.createElement("div");
-            heart.innerHTML = "💖";
-            heart.style.position = "absolute";
-            heart.style.left = Math.random() * 100 + "%";
-            heart.style.bottom = "-40px";
-            heart.style.fontSize = (20 + Math.random() * 30) + "px";
-            heart.style.opacity = 0.9;
-            heart.style.animation = `floatUp 4s linear forwards`;
-            yesHearts.appendChild(heart);
-            setTimeout(() => heart.remove(), 4000);
-        }, 400);
+                // Animate hearts floating
+                const yesHearts = document.getElementById("yesHearts");
+                setInterval(() => {
+                    const heart = document.createElement("div");
+                    heart.innerHTML = "💖";
+                    heart.style.position = "absolute";
+                    heart.style.left = Math.random() * 100 + "%";
+                    heart.style.bottom = "-40px";
+                    heart.style.fontSize = (20 + Math.random() * 30) + "px";
+                    heart.style.opacity = 0.9;
+                    heart.style.animation = `floatUp 4s linear forwards`;
+                    yesHearts.appendChild(heart);
+                    setTimeout(() => heart.remove(), 4000);
+                }, 400);
 
-        // Animate quote fade in
-        setTimeout(() => {
-            document.getElementById("yesQuote").style.opacity = "1";
-        }, 1200);
+                // Animate quote fade in
+                setTimeout(() => {
+                    document.getElementById("yesQuote").style.opacity = "1";
+                }, 1200);
 
-        // Background gradient animation
-        document.body.style.animation = "bgPulse 5s ease-in-out infinite alternate";
+                // Background gradient animation
+                document.body.style.animation = "bgPulse 5s ease-in-out infinite alternate";
 
-        const style = document.createElement("style");
-        style.innerHTML = `
+                // Add custom styles for YES screen
+                const style = document.createElement("style");
+                style.innerHTML = `
             @keyframes floatUp {
                 0% { transform: translateY(0) scale(0.8); opacity:0; }
                 10% { opacity:1; }
@@ -406,18 +410,15 @@
                 100% { background: radial-gradient(circle at top, #ff9a9e, #ff4d6d, #b91d73); }
             }
             #yesTitle { animation: fadeInUp 1s ease forwards; }
-            #yesMessage { animation: fadeInUp 1.5s ease forwards; }
             @keyframes fadeInUp {
                 from { opacity:0; transform:translateY(40px); }
                 to { opacity:1; transform:translateY(0); }
             }
         `;
-        document.head.appendChild(style);
+                document.head.appendChild(style);
 
-    }, 1000);
-});
-
-
+            }, 1000);
+        });
 
         document.getElementById("valentineContent").style.display = "block";
         setTimeout(() => {
